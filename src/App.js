@@ -8,25 +8,25 @@ class App extends Component{
     render(){
       return(
         <HashRouter>
-         <Layout className="layout">
+         <Layout className="layout" style={{height:'100%'}}>
         <Header>
           <div className="logo" />
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={['2']}
+            defaultSelectedKeys={['1']}
             style={{ lineHeight: '64px' }}
           >
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
+            <Menu.Item key="1">首页</Menu.Item>
+            <Menu.Item key="2">电影</Menu.Item>
+            <Menu.Item key="3">关于</Menu.Item>
           </Menu>
         </Header>
-        <Content style={{ padding: '0 50px' }}>
+        <Content style={{height:'100%',backgroundColor:'#fff' }}>
         
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
+          
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}>React Movie App</Footer>
       </Layout>,
      </HashRouter>
       )
