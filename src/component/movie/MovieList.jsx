@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Spin, Alert } from 'antd';
+import MovieItem from './MovieItem'
 class MovieList extends Component {
 
     constructor(props){
@@ -9,7 +10,8 @@ class MovieList extends Component {
             nowPage:props.match.params.page,
             pageSize:14,
             total:0,
-            isLoading:true
+            isLoading:true,
+            movieType:props.match.params.type
         }
     }
     componentWillMount(){
@@ -23,10 +25,21 @@ class MovieList extends Component {
     }
 
     loadMoiveListByTypeAndPage(){
-        fetch('http://localhost:8081/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b')
+        console.log('movieType:',this.state.movieType)
+        const start = this.state.pageSize*(this.state.nowPage-1)
+        const url =`http://localhost:8081/movie/${this.state.movieType}?start=${start}
+        &count=${this.pageSize}&apikey=0b2bdeda43b5688921839c8ecb20399b
+        `
+        fetch(url)
             .then(res => res.json())
             .then(data=>{
                 console.log(data)
+                const {total,subjects,count,start} = data;
+                this.setState({
+                    movies:subjects,
+                    total,
+                    isLoading:false
+                })
             })
     }
     render() {
@@ -47,7 +60,13 @@ class MovieList extends Component {
             />
             </Spin>
         }else{
-            return <h1>哈哈哈</h1>
+            return  <div style={{display:'flex',flexWrap:'wrap'}}>
+                {
+                    this.state.movies.map((item)=>{
+                        return <MovieItem {...item} key={item.id}></MovieItem> 
+                      })
+                }
+            </div>
         }
     }
 }

@@ -15,12 +15,12 @@ class MovieContainer extends Component {
                 style={{ height: '100%', borderRight: 0 }}
               >
                   <Menu.Item key="1">
-                      <Link to="/movie/in_threaters/1">
+                      <Link to="/movie/in_theaters/1">
                         正在热映
                       </Link>
                   </Menu.Item>
                   <Menu.Item key="2">
-                      <Link to="/movie/comming_soon/1">
+                      <Link to="/movie/coming_soon/1">
                         即将上映
                       </Link>
                   </Menu.Item>
