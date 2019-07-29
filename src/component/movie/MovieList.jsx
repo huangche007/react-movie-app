@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Spin, Alert } from 'antd';
-import fetchJsonp from 'fetch-jsonp'
 class MovieList extends Component {
 
     constructor(props){
@@ -24,7 +23,7 @@ class MovieList extends Component {
     }
 
     loadMoiveListByTypeAndPage(){
-        fetch('/api/movie/in_theaters')
+        fetch('http://localhost:8081/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b')
             .then(res => res.json())
             .then(data=>{
                 console.log(data)
