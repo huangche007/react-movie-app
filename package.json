@@ -36,8 +36,10 @@
   "devDependencies": {
     "express": "^4.17.1",
     "http-proxy-middleware": "^0.19.1",
+    "node-sass": "^4.12.0",
     "react-addons-pure-render-mixin": "^15.6.2",
     "react-router-dom": "^5.0.1",
+    "sass-loader": "^7.1.0",
     "superagent": "^5.1.0"
   }
 }
