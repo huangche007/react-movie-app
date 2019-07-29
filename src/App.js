@@ -26,7 +26,7 @@ class App extends Component{
               </Link>
             </Menu.Item>
             <Menu.Item key="movie">
-            <Link to="/movie/in_threaters/1">
+            <Link to="/movie/in_theaters/1">
               电影
               </Link>
             </Menu.Item>
