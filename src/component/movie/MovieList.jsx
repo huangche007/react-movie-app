@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Spin, Alert } from 'antd';
+import { Spin, Alert,Pagination  } from 'antd';
 import MovieItem from './MovieItem'
 class MovieList extends Component {
 
@@ -7,8 +7,8 @@ class MovieList extends Component {
         super(props);
         this.state = {
             movies:[],
-            nowPage:props.match.params.page,
-            pageSize:14,
+            nowPage:parseInt(props.match.params.page)||1,
+            pageSize:10,
             total:0,
             isLoading:true,
             movieType:props.match.params.type
@@ -28,7 +28,7 @@ class MovieList extends Component {
         console.log('movieType:',this.state.movieType)
         const start = this.state.pageSize*(this.state.nowPage-1)
         const url =`http://localhost:8081/movie/${this.state.movieType}?start=${start}
-        &count=${this.pageSize}&apikey=0b2bdeda43b5688921839c8ecb20399b
+        &count=${this.state.pageSize}&apikey=0b2bdeda43b5688921839c8ecb20399b
         `
         fetch(url)
             .then(res => res.json())
@@ -48,7 +48,7 @@ class MovieList extends Component {
      */
     componentWillReceiveProps(nextProps){
         this.setState({
-            nowPage:nextProps.match.params.page,
+            nowPage:parseInt(nextProps.match.params.page) || 1,
             isLoading:true,
             movieType:nextProps.match.params.type
         },()=>{
@@ -74,14 +74,22 @@ class MovieList extends Component {
             />
             </Spin>
         }else{
-            return  <div style={{display:'flex',flexWrap:'wrap'}}>
+            return  <div>
+                <div style={{display:'flex',flexWrap:'wrap'}}>
                 {
                     this.state.movies.map((item)=>{
                         return <MovieItem {...item} key={item.id}></MovieItem> 
                       })
                 }
             </div>
+            <Pagination current={this.state.nowPage} defaultCurrent={this.state.nowPage} total={this.state.total} pageSize={this.state.pageSize} onChange={this.handlePageChange} />
+            </div>
         }
+    }
+
+    handlePageChange = (page) => {
+        // window.location.href=`/#/movie/${this.state.movieType}/${page}`
+        this.props.history.push(`/movie/${this.state.movieType}/${page}`)
     }
 }
 
