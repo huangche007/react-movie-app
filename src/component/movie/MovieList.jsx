@@ -42,6 +42,20 @@ class MovieList extends Component {
                 })
             })
     }
+    /**
+     * 组件接受到新的props触发
+     * @param {*} nextProps 
+     */
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            nowPage:nextProps.match.params.page,
+            isLoading:true,
+            movieType:nextProps.match.params.type
+        },()=>{
+            this.loadMoiveListByTypeAndPage();
+        })
+    }
+
     render() {
         return (
             <div>

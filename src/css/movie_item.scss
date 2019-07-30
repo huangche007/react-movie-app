@@ -16,4 +16,9 @@
         opacity: .9;
         transform: rotate(1deg) scale(1.03)
     }
+    h4{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
