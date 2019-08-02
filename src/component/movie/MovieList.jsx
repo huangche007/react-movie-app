@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Spin, Alert,Pagination  } from 'antd';
 import MovieItem from './MovieItem'
+import PropTypes from 'prop-types';
 class MovieList extends Component {
-
     constructor(props){
         super(props);
         this.state = {
@@ -77,9 +77,10 @@ class MovieList extends Component {
             return  <div>
                 <div style={{display:'flex',flexWrap:'wrap'}}>
                 {
-                    this.state.movies.map((item)=>{
-                        return <MovieItem {...item} key={item.id}></MovieItem> 
-                      })
+            
+            this.state.movies?this.state.movies.map((item)=>{
+                        return <MovieItem {...item} key={item.id} history={this.props.history}></MovieItem> 
+                      }):[]
                 }
             </div>
             <Pagination current={this.state.nowPage} defaultCurrent={this.state.nowPage} total={this.state.total} pageSize={this.state.pageSize} onChange={this.handlePageChange} />

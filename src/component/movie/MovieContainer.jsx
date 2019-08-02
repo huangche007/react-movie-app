@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Route,Link} from 'react-router-dom'
+import {Route,Link,Switch} from 'react-router-dom'
 import { Layout, Menu } from 'antd';
 import MovieList from './MovieList'
+import MovieDetail from './MovieDetail'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 class MovieContainer extends Component {
@@ -42,9 +43,13 @@ class MovieContainer extends Component {
                   minHeight: 280,
                 }}
               >
-                <Route path="/movie/:type/:page" component={MovieList}>
 
-                </Route>
+                <Switch>
+                <Route exact path="/movie/detail/:id" component={MovieDetail}></Route>
+                  <Route exact path="/movie/:type/:page" component={MovieList} ></Route>
+                 
+                </Switch>
+               
               </Content>
             </Layout>
           </Layout>

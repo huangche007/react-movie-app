@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {HashRouter,Link,Route} from 'react-router-dom'
+import {HashRouter,Link,Route,Switch} from 'react-router-dom'
 import HomeContainer from './component/home/HomeContainer'
 import MovieContainer from './component/movie/MovieContainer'
 import AboutContainer from './component/about/AboutContainer'
@@ -38,15 +38,18 @@ class App extends Component{
           </Menu>
         </Header>
         <Content style={{height:'100%',backgroundColor:'#fff',flex:1 }}>
-         <Route path="/home" component={HomeContainer}>
+          <Switch>
+            <Route path="/home" component={HomeContainer}>
 
-         </Route>
-         <Route path="/movie" component={MovieContainer}>
+            </Route>
+            <Route path="/movie" component={MovieContainer}>
 
-        </Route>
-        <Route path="/about" component={AboutContainer}>
+            </Route>
+            <Route path="/about" component={AboutContainer}>
 
-        </Route>
+            </Route>
+          </Switch>
+         
         </Content>
         <Footer style={{ textAlign: 'center' }}>React Movie App</Footer>
       </Layout>,
